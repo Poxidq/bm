@@ -9,14 +9,37 @@
     "lint": "next lint"
   },
   "dependencies": {
-    "@types/node": "20.4.2",
+    "@emotion/react": "^11.11.1",
+    "@emotion/server": "^11.11.0",
+    "@mantine/carousel": "^6.0.16",
+    "@mantine/core": "^6.0.16",
+    "@mantine/dropzone": "^6.0.16",
+    "@mantine/form": "^6.0.16",
+    "@mantine/hooks": "^6.0.16",
+    "@mantine/modals": "^6.0.16",
+    "@mantine/next": "^6.0.16",
+    "@mantine/notifications": "^6.0.16",
+    "@mantine/nprogress": "^6.0.16",
+    "@mantine/prism": "^6.0.16",
+    "@mantine/spotlight": "^6.0.16",
+    "@mantine/tiptap": "^6.0.16",
+    "@tabler/icons-react": "^2.25.0",
+    "@tiptap/extension-link": "^2.0.3",
+    "@tiptap/react": "^2.0.3",
+    "@tiptap/starter-kit": "^2.0.3",
     "@types/react": "18.2.15",
     "@types/react-dom": "18.2.7",
+    "embla-carousel-react": "^7.1.0",
     "eslint": "8.44.0",
     "eslint-config-next": "13.4.9",
     "next": "13.4.9",
     "react": "18.2.0",
-    "react-dom": "18.2.0",
-    "typescript": "5.1.6"
+    "react-dom": "18.2.0"
+  },
+  "devDependencies": {
+    "@types/node": "^20.4.2",
+    "prisma": "^5.0.0",
+    "ts-node": "^10.9.1",
+    "typescript": "^5.1.6"
   }
 }
