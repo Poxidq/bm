@@ -1,4 +1,7 @@
+'use client';
 import './globals.css'
+import NavBar from '../components/NavBar'
+import { MantineProvider } from '@mantine/core'
 import type { Metadata } from 'next'
 
 
@@ -14,7 +17,10 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body>{children}</body>
+      <body>
+        <NavBar style='string'/>
+        {children}
+      </body>
     </html>
   )
 }
