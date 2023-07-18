@@ -11,12 +11,7 @@ import {
 } from "@mantine/core";
 import { IconPlus } from "@tabler/icons-react";
 import MovieDetails from "./MovieDetails";
-
-export interface Movie {
-  id: number;
-  title: string;
-  imageURL: string;
-}
+import { Movie } from "./types";
 
 interface MovieCardProps {
   movie: Movie;
@@ -35,13 +30,13 @@ export default function MovieCard({ movie, onClick }: MovieCardProps) {
       >
         <Card.Section>
           <AspectRatio ratio={2 / 3}>
-            <Image src={movie.imageURL} alt={movie.title} fit="cover" />
+            <Image src={movie.imageUrl} alt={movie.title} fit="cover" />
           </AspectRatio>
         </Card.Section>
         <Text weight={500} mt="sm">
-          {movie.title} (2023)
+          {movie.title} | {movie.year}
         </Text>
-        <Text size="xs" opacity={0.6}>Action, Adventure, Science Fiction</Text>
+        <Text size="xs" opacity={0.6}>{movie.genre}</Text>
         <ActionIcon
           style={{ position: "absolute", right: 10 }}
           variant="filled"
