@@ -6,27 +6,29 @@ import MovieDetails from "../components/movie/MovieDetails";
 import React, { useState } from "react";
 
 export default function FilmsPage() {
+  const [areMovieDetailsOpened, setAreMovieDetailsOpened] =
+    useState<boolean>(false);
   const [openedMovie, setOpenedMovie] = useState<Movie | null>(null);
 
   return (
     <div>
       <Modal
-        opened={openedMovie != null}
-        onClose={() => setOpenedMovie(null)}
-        title="Movie details"
+        size={"xl"}
+        opened={areMovieDetailsOpened}
+        onClose={() => setAreMovieDetailsOpened(false)}
+        title="About movie"
       >
         {openedMovie !== null && (
           <MovieDetails movie={openedMovie}></MovieDetails>
         )}
       </Modal>
-      {/* onClick={() => setMovieDetailsOpened(true)}  */}
-      {/* <h1>Movies Catalog</h1> */}
       <Grid gutter="md">
         {movies.map((film) => (
           <Grid.Col xs={2.4}>
             <MovieCard
               movie={film}
               onClick={() => {
+                setAreMovieDetailsOpened(true);
                 setOpenedMovie(film);
               }}
             />
@@ -42,48 +44,48 @@ const movies: Movie[] = [
     id: 1,
     title: "Shazam",
     imageURL:
-      "https://www.themoviedb.org/t/p/w220_and_h330_face/A3ZbZsmsvNGdprRi2lKgGEeVLEH.jpg",
+      "https://cdn.europosters.eu/image/750/posters/shazam-good-vs-evil-i73404.jpg",
   },
   {
     id: 2,
     title: "Not Shazam",
     imageURL:
-      "https://www.themoviedb.org/t/p/w220_and_h330_face/A3ZbZsmsvNGdprRi2lKgGEeVLEH.jpg",
+      "https://cdn.europosters.eu/image/750/posters/shazam-good-vs-evil-i73404.jpg",
   },
   {
     id: 3,
     title: "Shazam 2",
     imageURL:
-      "https://www.themoviedb.org/t/p/w220_and_h330_face/A3ZbZsmsvNGdprRi2lKgGEeVLEH.jpg",
+      "https://cdn.europosters.eu/image/750/posters/shazam-good-vs-evil-i73404.jpg",
   },
   {
     id: 3,
     title: "Shazam 2",
     imageURL:
-      "https://www.themoviedb.org/t/p/w220_and_h330_face/A3ZbZsmsvNGdprRi2lKgGEeVLEH.jpg",
+      "https://cdn.europosters.eu/image/750/posters/shazam-good-vs-evil-i73404.jpg",
   },
   {
     id: 3,
     title: "Shazam 2",
     imageURL:
-      "https://www.themoviedb.org/t/p/w220_and_h330_face/A3ZbZsmsvNGdprRi2lKgGEeVLEH.jpg",
+      "https://cdn.europosters.eu/image/750/posters/shazam-good-vs-evil-i73404.jpg",
   },
   {
     id: 3,
     title: "Shazam 2",
     imageURL:
-      "https://www.themoviedb.org/t/p/w220_and_h330_face/A3ZbZsmsvNGdprRi2lKgGEeVLEH.jpg",
+      "https://cdn.europosters.eu/image/750/posters/shazam-good-vs-evil-i73404.jpg",
   },
   {
     id: 3,
     title: "Shazam 2",
     imageURL:
-      "https://www.themoviedb.org/t/p/w220_and_h330_face/A3ZbZsmsvNGdprRi2lKgGEeVLEH.jpg",
+      "https://cdn.europosters.eu/image/750/posters/shazam-good-vs-evil-i73404.jpg",
   },
   {
     id: 3,
     title: "Shazam 2",
     imageURL:
-      "https://www.themoviedb.org/t/p/w220_and_h330_face/A3ZbZsmsvNGdprRi2lKgGEeVLEH.jpg",
+      "https://cdn.europosters.eu/image/750/posters/shazam-good-vs-evil-i73404.jpg",
   },
 ];
