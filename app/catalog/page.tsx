@@ -23,8 +23,8 @@ export default function FilmsPage() {
         )}
       </Modal>
       <Grid gutter="md">
-        {movies.map((film) => (
-          <Grid.Col xs={2.4}>
+        {movies.map((film, _id) => (
+          <Grid.Col xs={2.4} key={_id}>
             <MovieCard
               movie={film}
               onClick={() => {
