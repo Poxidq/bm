@@ -39,8 +39,9 @@ export default function MovieCard({ movie, onClick }: MovieCardProps) {
           </AspectRatio>
         </Card.Section>
         <Text weight={500} mt="sm">
-          {movie.title}
+          {movie.title} (2023)
         </Text>
+        <Text size="xs" opacity={0.6}>Action, Adventure, Science Fiction</Text>
         <ActionIcon
           style={{ position: "absolute", right: 10 }}
           variant="filled"
