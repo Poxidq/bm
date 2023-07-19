@@ -7,10 +7,11 @@ import {
 } from "@components/userpage/UserMovies";
 import { UserStats, data } from "@components/userpage/UserStats";
 import React, { useState } from "react";
+import { Text } from "@mantine/core";
 
 export default function UserPage() {
-  const avatar = "https://i2.paste.pics/OTGHD.png";
-  const name = "Yevgeny Prigozhin";
+  const avatar = "https://i.pinimg.com/474x/cf/f1/b0/cff1b00211b10b5e9820ef6494b28da3.jpg";
+  const name = "Mason Ayers";
   const gender = "Male";
   const age = 21;
   return (
@@ -29,7 +30,7 @@ export default function UserPage() {
         </div>
         <UserStats />
       </div>
-      <h1>Your movies</h1>
+      <Text size="xl" weight="bold" mb={10}>Your movies</Text>
       <UserMoviesTable data={userMoviesData} />
     </div>
   );
