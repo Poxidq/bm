@@ -1,36 +1,38 @@
+"use client";
+
 import React from "react";
 import {
   Radar,
   RadarChart,
   PolarGrid,
   PolarAngleAxis,
-  PolarRadiusAxis
+  PolarRadiusAxis,
 } from "recharts";
 
 export const data = [
   {
-    genre: 'Action',
+    genre: "Action",
     watched: 20,
   },
   {
-    genre: 'Comedy',
+    genre: "Comedy",
     watched: 12,
   },
   {
-    genre: 'Horror',
+    genre: "Horror",
     watched: 15,
   },
   {
-    genre: 'Cartoon',
+    genre: "Cartoon",
     watched: 10,
   },
   {
-    genre: 'Fantasy',
+    genre: "Fantasy",
     watched: 28,
   },
   {
-    genre: 'Other',
-    watched: 50
+    genre: "Other",
+    watched: 50,
   },
 ];
 

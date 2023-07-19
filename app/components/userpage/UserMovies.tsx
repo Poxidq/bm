@@ -1,10 +1,20 @@
-import { createStyles, Table, Progress, Anchor, Text, Group, ScrollArea, rem } from '@mantine/core';
+"use client";
+import {
+  createStyles,
+  Table,
+  Progress,
+  Anchor,
+  Text,
+  Group,
+  ScrollArea,
+  rem,
+} from "@mantine/core";
 
 const useStyles = createStyles((theme) => ({
   progressBar: {
-    '&:not(:first-of-type)': {
+    "&:not(:first-of-type)": {
       borderLeft: `${rem(3)} solid ${
-        theme.colorScheme === 'dark' ? theme.colors.dark[7] : theme.white
+        theme.colorScheme === "dark" ? theme.colors.dark[7] : theme.white
       }`,
     },
   },
@@ -34,8 +44,7 @@ export function UserMoviesTable({ data }: UserMoviesProps) {
         <td>{row.year}</td>
         <td>{row.genre}</td>
         <td>{row.rate + "/10"}</td>
-        <td>
-        </td>
+        <td></td>
       </tr>
     );
   });
@@ -59,25 +68,25 @@ export function UserMoviesTable({ data }: UserMoviesProps) {
 }
 
 export const userMoviesData = [
-    {
-      title: "Inception",
-      type: "film",
-      year: 2010,
-      genre: "Action",
-      rate: 8.8,
-    },
-    {
-      title: "The Dark Knight",
-      type: "film",
-      year: 2008,
-      genre: "Action",
-      rate: 9.0,
-    },
-    {
-      title: "Pulp Fiction",
-      type: "film",
-      year: 1994,
-      genre: "Crime",
-      rate: 8.9,
-    },
-  ];
+  {
+    title: "Inception",
+    type: "film",
+    year: 2010,
+    genre: "Action",
+    rate: 8.8,
+  },
+  {
+    title: "The Dark Knight",
+    type: "film",
+    year: 2008,
+    genre: "Action",
+    rate: 9.0,
+  },
+  {
+    title: "Pulp Fiction",
+    type: "film",
+    year: 1994,
+    genre: "Crime",
+    rate: 8.9,
+  },
+];

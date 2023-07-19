@@ -3,6 +3,7 @@
 import RootStyleRegistry from "./emotion";
 import { Container } from "@mantine/core";
 import Navbar from "./components/Navbar";
+import Head from "next/head";
 
 export default function RootLayout({
   children,
@@ -11,7 +12,9 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en-US">
-      <head />
+      <Head>
+        <title>bM</title>
+      </Head>
       <body>
         <RootStyleRegistry>
           <Navbar />

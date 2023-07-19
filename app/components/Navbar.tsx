@@ -25,7 +25,7 @@ export default function Navbar() {
         }}
       >
         <Link href="/" style={{ textDecoration: "none" }}>
-          <Text component="a" size="xl" weight="bold" color="black">
+          <Text component="span" size="xl" weight="bold" color="black">
             bM
           </Text>
         </Link>
