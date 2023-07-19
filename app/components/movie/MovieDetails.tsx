@@ -13,12 +13,7 @@ import {
   ThemeIcon,
 } from "@mantine/core";
 import { IconPlus, IconStarFilled, IconStar } from "@tabler/icons-react";
-
-export interface Movie {
-  id: number;
-  title: string;
-  imageURL: string;
-}
+import { Movie } from "./types";
 
 interface MovieDetailsProps {
   movie: Movie;
@@ -30,26 +25,28 @@ export default function MovieDetails({ movie }: MovieDetailsProps) {
       <Grid gutter="lg">
         <Grid.Col xs={4}>
           <AspectRatio ratio={2 / 3} mx="auto">
-            <Image src={movie.imageURL} />
+            <Image src={movie.imageUrl} alt="image src" />
           </AspectRatio>
         </Grid.Col>
         <Grid.Col xs={8}>
-          <Text size="lg">{movie.title} (2023)</Text>
+          <Text size="lg">
+            {movie.title} ({movie.year})
+          </Text>
           <Group>
             <Text size="sm" opacity={0.6}>
-              06/16/2023
+              {movie.released}
             </Text>
             <Text size="sm" opacity={0.6}>
-              Action, Adventure, Science Fiction
+              {movie.genre}
             </Text>
             <Text size="sm" opacity={0.6}>
-              2h 24m
+              {movie.runtime}
             </Text>
           </Group>
 
           <Group>
             <IconStar fill="#eb8d09" stroke="none" color="none" />
-            <Text size="md">7.5/10</Text>
+            <Text size="md">{movie.rating}/10</Text>
           </Group>
 
           <Button mt={10} leftIcon={<IconPlus />}>
@@ -59,7 +56,7 @@ export default function MovieDetails({ movie }: MovieDetailsProps) {
           <Text size="lg" mt={10} weight={"bold"}>
             Overview
           </Text>
-          <Text size="md">Description</Text>
+          <Text size="md">{movie.plot}</Text>
         </Grid.Col>
       </Grid>
     </div>
