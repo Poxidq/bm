@@ -1,9 +1,9 @@
 "use client";
 
 import { Grid, Modal } from "@mantine/core";
-import MovieCard from "@components/movie/MovieCard";
-import { Movie } from "@components/movie/types";
-import MovieDetails from "@components/movie/MovieDetails";
+import MovieCard from "@/components/movie/MovieCard";
+import { Movie } from "@/lib/movie/types";
+import MovieDetailsModal from "@/components/movie/MovieDetailsModal";
 import React, { useState, use } from "react";
 
 interface MoviesProps {
@@ -18,16 +18,11 @@ export default function MoviesPage({ movies }: MoviesProps) {
 
   return (
     <div>
-      <Modal
-        size={"xl"}
-        opened={areMovieDetailsOpened}
+      <MovieDetailsModal
+        movieData={openedMovie}
+        isOpened={areMovieDetailsOpened}
         onClose={() => setAreMovieDetailsOpened(false)}
-        title="About movie"
-      >
-        {openedMovie !== null && (
-          <MovieDetails movie={openedMovie}></MovieDetails>
-        )}
-      </Modal>
+      />
       <Grid gutter="md">
         {movies.map((film, _id) => (
           <Grid.Col xs={2.4} key={_id}>

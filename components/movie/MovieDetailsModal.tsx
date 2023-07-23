@@ -11,42 +11,52 @@ import {
   Group,
   Grid,
   ThemeIcon,
+  Modal,
 } from "@mantine/core";
 import { IconPlus, IconStarFilled, IconStar } from "@tabler/icons-react";
-import { Movie } from "./types";
+import { Movie } from "../../movie/types";
 
-interface MovieDetailsProps {
-  movie: Movie;
+interface MovieDetailsModalProps {
+  movieData: Movie | null;
+  isOpened: boolean;
+  onClose: () => void;
 }
 
-export default function MovieDetails({ movie }: MovieDetailsProps) {
+export default function MovieDetailsModal({
+  movieData,
+  isOpened,
+  onClose,
+}: MovieDetailsModalProps) {
+  if (movieData === null) {
+    return <></>;
+  }
   return (
-    <div>
+    <Modal size={"xl"} opened={isOpened} onClose={onClose} title="About movie">
       <Grid gutter="lg">
         <Grid.Col xs={4}>
           <AspectRatio ratio={2 / 3} mx="auto">
-            <Image src={movie.imageUrl} alt="image src" />
+            <Image src={movieData.imageUrl} alt="movie" />
           </AspectRatio>
         </Grid.Col>
         <Grid.Col xs={8}>
           <Text size="lg">
-            {movie.title} ({movie.year})
+            {movieData.title} ({movieData.year})
           </Text>
           <Group>
             <Text size="sm" opacity={0.6}>
-              {movie.released}
+              {movieData.released}
             </Text>
             <Text size="sm" opacity={0.6}>
-              {movie.genre}
+              {movieData.genre}
             </Text>
             <Text size="sm" opacity={0.6}>
-              {movie.runtime}
+              {movieData.runtime}
             </Text>
           </Group>
 
           <Group>
             <IconStar fill="#eb8d09" stroke="none" color="none" />
-            <Text size="md">{movie.rating}/10</Text>
+            <Text size="md">{movieData.rating}/10</Text>
           </Group>
 
           <Button mt={10} leftIcon={<IconPlus />}>
@@ -56,9 +66,9 @@ export default function MovieDetails({ movie }: MovieDetailsProps) {
           <Text size="lg" mt={10} weight={"bold"}>
             Overview
           </Text>
-          <Text size="md">{movie.plot}</Text>
+          <Text size="md">{movieData.plot}</Text>
         </Grid.Col>
       </Grid>
-    </div>
+    </Modal>
   );
 }

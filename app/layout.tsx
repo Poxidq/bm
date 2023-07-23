@@ -2,7 +2,7 @@
 
 import RootStyleRegistry from "./emotion";
 import { Container } from "@mantine/core";
-import Navbar from "./components/Navbar";
+import Navbar from "./Navbar";
 import Head from "next/head";
 
 export default function RootLayout({

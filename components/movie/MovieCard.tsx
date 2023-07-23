@@ -10,8 +10,8 @@ import {
   AspectRatio,
 } from "@mantine/core";
 import { IconPlus } from "@tabler/icons-react";
-import MovieDetails from "./MovieDetails";
-import { Movie } from "./types";
+import MovieDetailsModal from "./MovieDetailsModal";
+import { Movie } from "../../lib/movie/types";
 
 interface MovieCardProps {
   movie: Movie;
