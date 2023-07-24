@@ -1,4 +1,7 @@
 "use client";
+
+import Link from "next/link";
+import { UserMovie } from "@/lib/movie/types";
 import {
   createStyles,
   Table,
@@ -20,32 +23,19 @@ const useStyles = createStyles((theme) => ({
   },
 }));
 
-export interface UserMoviesProps {
-  data: {
-    title: string;
-    type: string;
-    year: number;
-    genre: string;
-    rate: number;
-  }[];
-}
-
-export function UserMoviesTable({ data }: UserMoviesProps) {
+export function UserMoviesTable({ data }: { data: UserMovie[] | undefined }) {
   const { classes, theme } = useStyles();
-  const rows = data.map((row) => {
+  const rows = data?.map((row, _id) => {
     return (
-      <tr key={row.title}>
-        <td>
-          <Anchor component="button" fz="sm">
-            {row.title}
-          </Anchor>
-        </td>
-        <td>{row.type}</td>
-        <td>{row.year}</td>
-        <td>{row.genre}</td>
-        <td>{row.rate + "/10"}</td>
-        <td></td>
-      </tr>
+      <Link key={_id} href={`/movie/${row.id}`}>
+        <tr key={row.title}>
+          <td>{row.title}</td>
+          <td>{row.released}</td>
+          <td>{row.genre}</td>
+          <td>{row.rating + "/10"}</td>
+          <td></td>
+        </tr>
+      </Link>
     );
   });
 
@@ -54,11 +44,10 @@ export function UserMoviesTable({ data }: UserMoviesProps) {
       <Table sx={{ minWidth: 800 }} verticalSpacing="xs">
         <thead>
           <tr>
-            <th>Movie</th>
-            <th>Type</th>
-            <th>Year</th>
+            <th>Title</th>
+            <th>Released</th>
             <th>Genre</th>
-            <th>Rate</th>
+            <th>Rating</th>
           </tr>
         </thead>
         <tbody>{rows}</tbody>
@@ -66,27 +55,3 @@ export function UserMoviesTable({ data }: UserMoviesProps) {
     </ScrollArea>
   );
 }
-
-export const userMoviesData = [
-  {
-    title: "Inception",
-    type: "film",
-    year: 2010,
-    genre: "Action",
-    rate: 8.8,
-  },
-  {
-    title: "The Dark Knight",
-    type: "film",
-    year: 2008,
-    genre: "Action",
-    rate: 9.0,
-  },
-  {
-    title: "Pulp Fiction",
-    type: "film",
-    year: 1994,
-    genre: "Crime",
-    rate: 8.9,
-  },
-];

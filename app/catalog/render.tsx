@@ -1,14 +1,17 @@
 "use client";
 
 import { Grid } from "@mantine/core";
-import MovieCard from "@/components/movie/MovieCard";
+
+import React, { useState } from "react";
+
 import { Movie } from "@/lib/movie/types";
+import MovieCard from "@/components/movie/MovieCard";
 import MovieDetailsModal from "@/components/movie/MovieDetailsModal";
-import React, { useState, use } from "react";
 
 interface MoviesProps {
   movies: Movie[];
 }
+
 export default function MoviesPage({ movies }: MoviesProps) {
   const [areMovieDetailsOpened, setAreMovieDetailsOpened] =
     useState<boolean>(false);
