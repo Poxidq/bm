@@ -27,7 +27,7 @@ export default function MovieDetailsModal({
   onClose,
 }: MovieDetailsModalProps) {
   const { push } = useRouter();
-  //@ts-ignore
+  // @ts-expect-error
   const { addNewMovie } = useContextProvider();
   const [status, setStatus] = useState<
     "in the plans" | "watched" | "watching" | "abandoned"

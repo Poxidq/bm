@@ -2,7 +2,7 @@
 
 import { Card, Image, Text, Badge, AspectRatio } from "@mantine/core";
 import { IconPlus } from "@tabler/icons-react";
-import { MovieShort } from "../../lib/movie/types";
+import { type MovieShort } from "@lib/movie/types";
 
 interface MovieCardProps {
   movie: MovieShort;
@@ -17,7 +17,9 @@ export default function MovieCard({ movie, onClick }: MovieCardProps) {
         padding="sm"
         withBorder
         style={{ display: "flex", flexDirection: "column" }}
-        onClick={() => onClick(movie.id)}
+        onClick={() => {
+          onClick(movie.id);
+        }}
       >
         <Card.Section>
           <AspectRatio ratio={21 / 30}>

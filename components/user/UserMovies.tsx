@@ -1,12 +1,8 @@
 "use client";
-import { UserMovie, Movie } from "@/lib/movie/types";
+import {  type Movie } from "@/lib/movie/types";
 import {
   createStyles,
   Table,
-  Progress,
-  Anchor,
-  Text,
-  Group,
   ScrollArea,
   rem,
 } from "@mantine/core";

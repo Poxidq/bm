@@ -48,7 +48,7 @@ export default function SearchPageRender() {
           <Grid gutter="md" mt={10}>
             {movies.map((movie, _id) => (
               <Grid.Col xs={2.4} key={_id}>
-                <MovieCard movie={movie} onClick={handleAddMovie} />
+                <MovieCard movie={movie} onClick={() => handleAddMovie} />
               </Grid.Col>
             ))}
           </Grid>
@@ -70,7 +70,9 @@ export default function SearchPageRender() {
       <MovieDetailsModal
         movieData={activeMovie}
         isOpened={isModalOpen}
-        onClose={() => setIsModalOpen(false)}
+        onClose={() => {
+          setIsModalOpen(false);
+        }}
       />
     </div>
   );
