@@ -1,3 +1,8 @@
+export interface Rating {
+  source: string;
+  value: string;
+}
+
 export interface Movie {
   id: string;
   title: string;
@@ -6,6 +11,11 @@ export interface Movie {
   year: string;
   genre: string;
   released: string;
+  country: string;
   runtime: string;
-  plot: string
+  plot: string;
+  ratings: Rating[];
+  directors: string[];
+  writers: string[];
+  actors: string[];
 }

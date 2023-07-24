@@ -13,8 +13,8 @@ import {
   ThemeIcon,
   Modal,
 } from "@mantine/core";
-import { IconPlus, IconStarFilled, IconStar } from "@tabler/icons-react";
-import { Movie } from "../../movie/types";
+import { IconPlus, IconStar } from "@tabler/icons-react";
+import { Movie } from "@lib/movie/types";
 
 interface MovieDetailsModalProps {
   movieData: Movie | null;
