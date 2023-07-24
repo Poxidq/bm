@@ -14,7 +14,7 @@ export default function MoviesPage({ movies }: MoviesProps) {
     useState<boolean>(false);
   const [openedMovie, setOpenedMovie] = useState<Movie | null>(null);
 
-  console.log("DATA : ", movies);
+  // console.log("DATA : ", movies);
 
   return (
     <div>
