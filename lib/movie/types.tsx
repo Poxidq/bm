@@ -30,6 +30,9 @@ export interface MovieSearchResult {
   totalPages: number;
 }
 
-export interface UserMovie extends Movie {
+export interface UserMovie {
   status: "in the plans" | "watched" | "watching" | "abandoned";
+  userRating: number;
+  id: string;
+  review?: string;
 }
