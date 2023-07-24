@@ -1,4 +1,5 @@
 "use client";
+import { UserMovie, Movie } from "@/lib/movie/types";
 import {
   createStyles,
   Table,
@@ -9,6 +10,7 @@ import {
   ScrollArea,
   rem,
 } from "@mantine/core";
+import { useRouter } from "next/navigation";
 
 const useStyles = createStyles((theme) => ({
   progressBar: {
@@ -20,30 +22,16 @@ const useStyles = createStyles((theme) => ({
   },
 }));
 
-export interface UserMoviesProps {
-  data: {
-    title: string;
-    type: string;
-    year: number;
-    genre: string;
-    rate: number;
-  }[];
-}
-
-export function UserMoviesTable({ data }: UserMoviesProps) {
+export function UserMoviesTable({ data }: { data: Movie[] | undefined }) {
+  const { push } = useRouter();
   const { classes, theme } = useStyles();
-  const rows = data.map((row) => {
+  const rows = data?.map((row) => {
     return (
-      <tr key={row.title}>
-        <td>
-          <Anchor component="button" fz="sm">
-            {row.title}
-          </Anchor>
-        </td>
-        <td>{row.type}</td>
-        <td>{row.year}</td>
+      <tr key={row.title} onClick={() => push(`/movie/${row.id}`)}>
+        <td>{row.title}</td>
+        <td>{row.released}</td>
         <td>{row.genre}</td>
-        <td>{row.rate + "/10"}</td>
+        <td>{row.rating + "/10"}</td>
         <td></td>
       </tr>
     );
@@ -51,14 +39,20 @@ export function UserMoviesTable({ data }: UserMoviesProps) {
 
   return (
     <ScrollArea>
-      <Table sx={{ minWidth: 800 }} verticalSpacing="xs">
+      <Table
+        sx={{ minWidth: 800, cursor: "pointer" }}
+        verticalSpacing="xs"
+        highlightOnHover
+      >
         <thead>
           <tr>
-            <th>Movie</th>
-            <th>Type</th>
-            <th>Year</th>
+            <th>Title</th>
+            <th>Released</th>
+            <th>Title</th>
+            <th>Released</th>
             <th>Genre</th>
-            <th>Rate</th>
+            <th>Rating</th>
+            <th>Rating</th>
           </tr>
         </thead>
         <tbody>{rows}</tbody>
@@ -66,27 +60,3 @@ export function UserMoviesTable({ data }: UserMoviesProps) {
     </ScrollArea>
   );
 }
-
-export const userMoviesData = [
-  {
-    title: "Inception",
-    type: "film",
-    year: 2010,
-    genre: "Action",
-    rate: 8.8,
-  },
-  {
-    title: "The Dark Knight",
-    type: "film",
-    year: 2008,
-    genre: "Action",
-    rate: 9.0,
-  },
-  {
-    title: "Pulp Fiction",
-    type: "film",
-    year: 1994,
-    genre: "Crime",
-    rate: 8.9,
-  },
-];

@@ -22,6 +22,17 @@ export interface Movie extends MovieShort {
   directors: string[];
   writers: string[];
   actors: string[];
+}
+
+export interface MovieSearchResult {
+  movies: MovieShort[];
+  totalPages: number;
+}
+
+export interface UserMovie {
+  status: "in the plans" | "watched" | "watching" | "abandoned";
+  userRating: number;
+  id: string;
   review?: string;
 }
 

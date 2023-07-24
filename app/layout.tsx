@@ -4,6 +4,7 @@ import RootStyleRegistry from "./emotion";
 import { Container } from "@mantine/core";
 import Navbar from "../components/Navbar";
 import Head from "next/head";
+import { TasksContextProvider } from "@/context/MovieContext";
 
 export default function RootLayout({
   children,
@@ -19,7 +20,7 @@ export default function RootLayout({
         <RootStyleRegistry>
           <Navbar />
           <Container size="lg" style={{ paddingTop: 20 }}>
-            {children}
+            <TasksContextProvider>{children}</TasksContextProvider>
           </Container>
         </RootStyleRegistry>
       </body>
