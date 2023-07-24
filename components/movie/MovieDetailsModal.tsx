@@ -10,9 +10,10 @@ import {
   Modal,
 } from "@mantine/core";
 import { IconPlus, IconStar } from "@tabler/icons-react";
-import { Movie, UserMovie } from "@lib/movie/types";
+import { type Movie, type UserMovie } from "@lib/movie/types";
 import { useContextProvider } from "@/context/MovieContext";
 import { useState } from "react";
+import { useRouter } from "next/navigation";
 
 interface MovieDetailsModalProps {
   movieData: Movie | undefined;
@@ -25,6 +26,7 @@ export default function MovieDetailsModal({
   isOpened,
   onClose,
 }: MovieDetailsModalProps) {
+  const { push } = useRouter();
   //@ts-ignore
   const { addNewMovie } = useContextProvider();
   const [status, setStatus] = useState<
@@ -40,12 +42,12 @@ export default function MovieDetailsModal({
   const handleAddNewMovie = () => {
     const newMovie: UserMovie = {
       id: movieData.id,
-      status: status,
-      userRating: userRating,
-      review: review,
+      status,
+      userRating,
+      review,
     };
     addNewMovie(newMovie);
-    console.log("ADDED new movie to local storage!");
+    // console.log("ADDED new movie to local storage!");
   };
 
   return (
@@ -77,14 +79,19 @@ export default function MovieDetailsModal({
             <Text size="md">{movieData.rating}/10</Text>
           </Group>
 
-          <Button mt={10} leftIcon={<IconPlus />}>
-            Watchlist
-          </Button>
-
           <Text size="lg" mt={10} weight={"bold"}>
             Overview
           </Text>
           <Text size="md">{movieData.plot}</Text>
+          <Button
+            mt={10}
+            leftIcon={<IconPlus />}
+            onClick={() => {
+              push(`/movie/${movieData.id}`);
+            }}
+          >
+            Add to list
+          </Button>
         </Grid.Col>
       </Grid>
     </Modal>

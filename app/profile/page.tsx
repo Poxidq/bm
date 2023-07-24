@@ -6,7 +6,7 @@ import { UserStats } from "@/components/user/UserStats";
 import React, { useEffect, useState } from "react";
 import { getMovieById } from "@/lib/movie/data";
 import { Text } from "@mantine/core";
-import { Movie } from "@/lib/movie/types";
+import { type Movie } from "@/lib/movie/types";
 import { useContextProvider } from "@/context/MovieContext";
 
 export default function UserPage() {

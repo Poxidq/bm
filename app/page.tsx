@@ -3,7 +3,7 @@
 import React, { useState, useEffect } from "react";
 import { Grid, Pagination, Text } from "@mantine/core";
 import MovieCard from "@/components/movie/MovieCard";
-import { Movie, MovieShort, UserMovie } from "@/lib/movie/types";
+import { type Movie, type MovieShort } from "@/lib/movie/types";
 import { getMovieById, searchMovies } from "@/lib/movie/data";
 import SearchBar from "@/components/SearchBar";
 import MovieDetailsModal from "@/components/movie/MovieDetailsModal";
@@ -27,8 +27,8 @@ export default function SearchPageRender() {
   };
 
   useEffect(() => {
-    if (search == "") return;
-    searchMovies({ search: search, page: currentPage }).then((result) => {
+    if (search === "") return;
+    void searchMovies({ search, page: currentPage }).then((result) => {
       setResults(true);
       setTotalPages(result.totalPages);
       setMovies(result.movies);
