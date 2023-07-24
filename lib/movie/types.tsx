@@ -29,3 +29,7 @@ export interface MovieSearchResult {
   movies: MovieShort[];
   totalPages: number;
 }
+
+export interface UserMovie extends Movie {
+  status: "in the plans" | "watched" | "watching" | "abandoned";
+}
