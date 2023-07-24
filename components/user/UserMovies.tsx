@@ -1,11 +1,6 @@
 "use client";
-import {  type Movie } from "@/lib/movie/types";
-import {
-  createStyles,
-  Table,
-  ScrollArea,
-  rem,
-} from "@mantine/core";
+import { type Movie } from "@/lib/movie/types";
+import { createStyles, Table, ScrollArea, rem } from "@mantine/core";
 import { useRouter } from "next/navigation";
 
 const useStyles = createStyles((theme) => ({

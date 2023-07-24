@@ -1,5 +1,5 @@
 "use client";
-import { UserMovie } from "@/lib/movie/types";
+import { type UserMovie } from "@/lib/movie/types";
 import { createContext, useContext, useState } from "react";
 
 const ContextProvider = createContext({});
@@ -15,7 +15,7 @@ export const TasksContextProvider = ({ children }: any) => {
   ]);
 
   const findMoviesById = (id: string) => {
-    return movies.filter((movie) => movie.id == id);
+    return movies.filter((movie) => movie.id === id);
   };
 
   const addNewMovie = (movie: UserMovie): void => {

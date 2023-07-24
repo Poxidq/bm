@@ -14,7 +14,11 @@ export default function SearchBar({
   });
 
   return (
-    <form onSubmit={form.onSubmit((values) => { onSearch(values.search); })}>
+    <form
+      onSubmit={form.onSubmit((values) => {
+        onSearch(values.search);
+      })}
+    >
       <TextInput
         {...form.getInputProps("search")}
         placeholder="Spider-Man"
