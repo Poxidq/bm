@@ -20,3 +20,7 @@ export interface Movie {
   actors: string[];
   review?: string;
 }
+
+export interface UserMovie extends Movie {
+  status: "in the plans" | "watched" | "watching" | "abandoned";
+}
