@@ -2,11 +2,11 @@
 
 import { UserCard } from "@/components/user/UserCard";
 import { UserMoviesTable } from "@/components/user/UserMovies";
-import { UserStats, data } from "@/components/user/UserStats";
+import { UserStats } from "@/components/user/UserStats";
 import React, { useEffect, useState } from "react";
 import { getMovieById } from "@/lib/movie/data";
 import { Text } from "@mantine/core";
-import { Movie, UserMovie } from "@/lib/movie/types";
+import { UserMovie } from "@/lib/movie/types";
 
 export default function UserPage() {
   const avatar =
