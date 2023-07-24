@@ -2,7 +2,6 @@
 
 import { UserCard } from "@/components/user/UserCard";
 import { UserMoviesTable } from "@/components/user/UserMovies";
-<<<<<<< HEAD
 import { UserStats } from "@/components/user/UserStats";
 import React, { useEffect, useState } from "react";
 import { getMovieById } from "@/lib/movie/data";

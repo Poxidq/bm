@@ -1,6 +1,6 @@
 "use client";
 
-import { Card, Image, Text, ActionIcon, AspectRatio, Badge } from "@mantine/core";
+import { Card, Image, Text, Badge, AspectRatio } from "@mantine/core";
 import { IconPlus } from "@tabler/icons-react";
 import { MovieShort } from "../../lib/movie/types";
 
@@ -38,7 +38,6 @@ export default function MovieCard({ movie, onClick }: MovieCardProps) {
           style={{ position: "absolute", right: 10 }}
           variant="filled"
           color="blue"
-          color="blue"
         >
           <IconPlus />
         </ActionIcon> */}
@@ -47,5 +46,5 @@ export default function MovieCard({ movie, onClick }: MovieCardProps) {
         </Badge>
       </Card>
     </>
-)
-};
+  );
+}
