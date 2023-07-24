@@ -1,12 +1,6 @@
 "use client";
 
-import {
-  Card,
-  Image,
-  Text,
-  ActionIcon,
-  AspectRatio,
-} from "@mantine/core";
+import { Card, Image, Text, ActionIcon, AspectRatio } from "@mantine/core";
 import { IconPlus } from "@tabler/icons-react";
 import type { Movie } from "@/lib/movie/types";
 
