@@ -1,20 +1,16 @@
 "use client";
 
 import {
-  Card,
   Image,
   Text,
-  Badge,
   Button,
-  ActionIcon,
   AspectRatio,
   Group,
   Grid,
-  ThemeIcon,
   Modal,
 } from "@mantine/core";
 import { IconPlus, IconStar } from "@tabler/icons-react";
-import { Movie } from "@lib/movie/types";
+import type { Movie } from "@lib/movie/types";
 
 interface MovieDetailsModalProps {
   movieData: Movie | null;

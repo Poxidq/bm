@@ -1,15 +1,6 @@
 "use client";
-import { UserMovie, Movie } from "@/lib/movie/types";
-import {
-  createStyles,
-  Table,
-  Progress,
-  Anchor,
-  Text,
-  Group,
-  ScrollArea,
-  rem,
-} from "@mantine/core";
+import type { UserMovie } from "@/lib/movie/types";
+import { createStyles, Table, ScrollArea, rem } from "@mantine/core";
 import { useRouter } from "next/navigation";
 
 const useStyles = createStyles((theme) => ({
@@ -24,10 +15,15 @@ const useStyles = createStyles((theme) => ({
 
 export function UserMoviesTable({ data }: { data: Movie[] | undefined }) {
   const { push } = useRouter();
-  const { classes, theme } = useStyles();
+  useStyles();
   const rows = data?.map((row) => {
     return (
-      <tr key={row.title} onClick={() => push(`/movie/${row.id}`)}>
+      <tr
+        key={row.title}
+        onClick={() => {
+          push(`/movie/${row.id}`);
+        }}
+      >
         <td>{row.title}</td>
         <td>{row.released}</td>
         <td>{row.genre}</td>

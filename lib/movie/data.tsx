@@ -1,6 +1,4 @@
-import { Movie, MovieShort, MovieSearchResult } from "@/lib/movie/types";
-
-const API_BASE_URL = "https://www.omdbapi.com";
+import type { Movie } from "@/lib/movie/types";
 
 export const getMovieById = async (movieId: string): Promise<Movie> => {
   const response = await fetch(

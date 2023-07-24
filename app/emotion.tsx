@@ -6,15 +6,15 @@ import {
   useEmotionCache,
   MantineProvider,
   ColorSchemeProvider,
-  ColorScheme,
 } from "@mantine/core";
+import type { ColorScheme } from "@mantine/core";
 import { useServerInsertedHTML } from "next/navigation";
 
 export default function RootStyleRegistry({
   children,
 }: {
   children: React.ReactNode;
-}) {
+}): JSX.Element {
   const cache = useEmotionCache();
   cache.compat = true;
 
@@ -28,9 +28,9 @@ export default function RootStyleRegistry({
   ));
 
   const [colorScheme, setColorScheme] = useState<ColorScheme>("light");
-  const toggleColorScheme = (value?: ColorScheme) =>
-    setColorScheme(value || (colorScheme === "dark" ? "light" : "dark"));
-
+  const toggleColorScheme = (value?: ColorScheme) => {
+    setColorScheme(value ?? (colorScheme === "dark" ? "light" : "dark"));
+  };
   return (
     <CacheProvider value={cache}>
       <ColorSchemeProvider
