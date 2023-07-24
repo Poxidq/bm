@@ -42,8 +42,8 @@ export default function MoviePage({ movie }: MoviePageProps) {
           </Group>
 
           <Group mt={5} mb={10}>
-            {movie.ratings.map((rating) => (
-              <Tooltip label={rating.source}>
+            {movie.ratings.map((rating, _id) => (
+              <Tooltip key={_id} label={rating.source}>
                 <Badge size="lg">{rating.value}</Badge>
               </Tooltip>
             ))}
@@ -55,22 +55,22 @@ export default function MoviePage({ movie }: MoviePageProps) {
           <Grid gutter="lg" mt={10}>
             <Grid.Col xs={3}>
               <Title order={3}>Actor{movie.actors.length > 1 && "s"}</Title>
-              {movie.actors.map((actor) => (
-                <Text>{actor}</Text>
+              {movie.actors.map((actor, _id) => (
+                <Text key={_id}>{actor}</Text>
               ))}
             </Grid.Col>
             <Grid.Col xs={3}>
               <Title order={3}>
                 Director{movie.directors.length > 1 && "s"}
               </Title>
-              {movie.directors.map((director) => (
-                <Text>{director}</Text>
+              {movie.directors.map((director, _id) => (
+                <Text key={_id}>{director}</Text>
               ))}
             </Grid.Col>
             <Grid.Col xs={3}>
               <Title order={3}>Writer{movie.writers.length > 1 && "s"}</Title>
-              {movie.writers.map((writer) => (
-                <Text>{writer}</Text>
+              {movie.writers.map((writer, _id) => (
+                <Text key={_id}>{writer}</Text>
               ))}
             </Grid.Col>
           </Grid>

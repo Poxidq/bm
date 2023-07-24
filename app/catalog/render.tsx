@@ -1,6 +1,6 @@
 "use client";
 
-import { Grid, Modal } from "@mantine/core";
+import { Grid } from "@mantine/core";
 import MovieCard from "@/components/movie/MovieCard";
 import { Movie } from "@/lib/movie/types";
 import MovieDetailsModal from "@/components/movie/MovieDetailsModal";
@@ -13,8 +13,6 @@ export default function MoviesPage({ movies }: MoviesProps) {
   const [areMovieDetailsOpened, setAreMovieDetailsOpened] =
     useState<boolean>(false);
   const [openedMovie, setOpenedMovie] = useState<Movie | null>(null);
-
-  // console.log("DATA : ", movies);
 
   return (
     <div>

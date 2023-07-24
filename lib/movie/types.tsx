@@ -18,4 +18,5 @@ export interface Movie {
   directors: string[];
   writers: string[];
   actors: string[];
+  review?: string;
 }
