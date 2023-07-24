@@ -1,10 +1,12 @@
 "use client";
 
 import { UserCard } from "@/components/user/UserCard";
-import { UserMoviesTable, userMoviesData } from "@/components/user/UserMovies";
+import { UserMoviesTable } from "@/components/user/UserMovies";
 import { UserStats, data } from "@/components/user/UserStats";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
+import { getMovieById } from "@/lib/movie/data";
 import { Text } from "@mantine/core";
+import { Movie, UserMovie } from "@/lib/movie/types";
 
 export default function UserPage() {
   const avatar =
@@ -12,6 +14,20 @@ export default function UserPage() {
   const name = "Mason Ayers";
   const gender = "Male";
   const age = 21;
+
+  const [userMoviesData, setUserMoviesData] = useState<UserMovie[]>();
+
+  useEffect(() => {
+    async function fetchData() {
+      setUserMoviesData([
+        {
+          ...(await getMovieById("tt0093870")),
+          status: "watched",
+        },
+      ]);
+    }
+    fetchData();
+  }, []);
   return (
     <div
       style={{ display: "flex", flexDirection: "column", alignItems: "center" }}
