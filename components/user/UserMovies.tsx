@@ -1,12 +1,5 @@
 "use client";
-<<<<<<< HEAD
-import type { UserMovie } from "@/lib/movie/types";
-import { createStyles, Table, ScrollArea, rem } from "@mantine/core";
-import { useRouter } from "next/navigation";
-=======
-
-import Link from "next/link";
-import { UserMovie } from "@/lib/movie/types";
+import { UserMovie, Movie } from "@/lib/movie/types";
 import {
   createStyles,
   Table,
@@ -29,8 +22,7 @@ const useStyles = createStyles((theme) => ({
   },
 }));
 
-export function UserMoviesTable({ data }: { data: UserMovie[] | undefined }) {
-<<<<<<< HEAD
+export function UserMoviesTable({ data }: { data: Movie[] | undefined }) {
   const { push } = useRouter();
   useStyles();
   const rows = data?.map((row) => {
@@ -79,10 +71,6 @@ export function UserMoviesTable({ data }: { data: UserMovie[] | undefined }) {
             <th>Released</th>
             <th>Genre</th>
             <th>Rating</th>
-<<<<<<< HEAD
-            <th>Rate</th>
-=======
->>>>>>> 0741462 (profile fetchind/types issues, added the link to details page for every movie)
           </tr>
         </thead>
         <tbody>{rows}</tbody>
