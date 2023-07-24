@@ -48,7 +48,10 @@ export function UserMoviesTable({ data }: { data: Movie[] | undefined }) {
           <tr>
             <th>Title</th>
             <th>Released</th>
+            <th>Title</th>
+            <th>Released</th>
             <th>Genre</th>
+            <th>Rating</th>
             <th>Rating</th>
           </tr>
         </thead>
