@@ -18,12 +18,14 @@ export const TasksContextProvider = ({ children }: any) => {
     return movies.filter((movie) => movie.id == id);
   };
 
-  const addNewMovie = (id: string) => {
-    return movies.filter((movie) => movie.id == id);
+  const addNewMovie = (movie: UserMovie): void => {
+    setMovies([...movies, movie]);
   };
 
   return (
-    <ContextProvider.Provider value={{ movies, setMovies, findMoviesById }}>
+    <ContextProvider.Provider
+      value={{ movies, setMovies, findMoviesById, addNewMovie }}
+    >
       {children}
     </ContextProvider.Provider>
   );

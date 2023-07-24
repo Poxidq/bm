@@ -10,10 +10,12 @@ import {
   Modal,
 } from "@mantine/core";
 import { IconPlus, IconStar } from "@tabler/icons-react";
-import type { Movie } from "@lib/movie/types";
+import { Movie, UserMovie } from "@lib/movie/types";
+import { useContextProvider } from "@/context/MovieContext";
+import { useState } from "react";
 
 interface MovieDetailsModalProps {
-  movieData: Movie | null;
+  movieData: Movie | undefined;
   isOpened: boolean;
   onClose: () => void;
 }
@@ -23,9 +25,29 @@ export default function MovieDetailsModal({
   isOpened,
   onClose,
 }: MovieDetailsModalProps) {
-  if (movieData === null) {
-    return <></>;
+  //@ts-ignore
+  const { addNewMovie } = useContextProvider();
+  const [status, setStatus] = useState<
+    "in the plans" | "watched" | "watching" | "abandoned"
+  >("in the plans");
+  const [userRating, setUserRating] = useState(0);
+  const [review, setReview] = useState("");
+
+  if (movieData === undefined) {
+    return <>Note Found</>;
   }
+
+  const handleAddNewMovie = () => {
+    const newMovie: UserMovie = {
+      id: movieData.id,
+      status: status,
+      userRating: userRating,
+      review: review,
+    };
+    addNewMovie(newMovie);
+    console.log("ADDED new movie to local storage!");
+  };
+
   return (
     <Modal size={"xl"} opened={isOpened} onClose={onClose} title="About movie">
       <Grid gutter="lg">

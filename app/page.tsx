@@ -1,11 +1,12 @@
 "use client";
 
+import React, { useState, useEffect } from "react";
 import { Grid, Pagination, Text } from "@mantine/core";
 import MovieCard from "@/components/movie/MovieCard";
-import { MovieShort } from "@/lib/movie/types";
-import React, { useState, useEffect } from "react";
-import { searchMovies } from "@/lib/movie/data";
+import { Movie, MovieShort, UserMovie } from "@/lib/movie/types";
+import { getMovieById, searchMovies } from "@/lib/movie/data";
 import SearchBar from "@/components/SearchBar";
+import MovieDetailsModal from "@/components/movie/MovieDetailsModal";
 
 export default function SearchPageRender() {
   const [currentPage, setCurrentPage] = useState(1);
@@ -13,6 +14,8 @@ export default function SearchPageRender() {
   const [movies, setMovies] = useState<MovieShort[]>([]);
   const [search, setSearch] = useState("");
   const [result, setResults] = useState(false);
+  const [activeMovie, setActiveMovie] = useState<Movie>();
+  const [isModalOpen, setIsModalOpen] = useState(false);
 
   const onSearch = (search: string) => {
     setCurrentPage(1);
@@ -32,6 +35,11 @@ export default function SearchPageRender() {
     });
   }, [search, currentPage]);
 
+  const handleAddMovie = async (id: string) => {
+    setActiveMovie(await getMovieById(id));
+    setIsModalOpen(true);
+  };
+
   return (
     <div>
       <SearchBar onSearch={onSearch} />
@@ -40,7 +48,7 @@ export default function SearchPageRender() {
           <Grid gutter="md" mt={10}>
             {movies.map((movie, _id) => (
               <Grid.Col xs={2.4} key={_id}>
-                <MovieCard movie={movie} onClick={() => {}} />
+                <MovieCard movie={movie} onClick={handleAddMovie} />
               </Grid.Col>
             ))}
           </Grid>
@@ -59,6 +67,11 @@ export default function SearchPageRender() {
           </Text>
         </>
       )}
+      <MovieDetailsModal
+        movieData={activeMovie}
+        isOpened={isModalOpen}
+        onClose={() => setIsModalOpen(false)}
+      />
     </div>
   );
 }

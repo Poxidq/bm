@@ -19,7 +19,7 @@ export default function UserPage() {
   const age = 21;
 
   const [userMoviesData, setUserMoviesData] = useState<Movie[]>([]);
-  //@ts-ignore
+  // @ts-ignore
   const { movies } = useContextProvider();
 
   useEffect(() => {
