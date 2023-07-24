@@ -2,11 +2,11 @@
 
 import { UserCard } from "@/components/user/UserCard";
 import { UserMoviesTable } from "@/components/user/UserMovies";
-import { UserStats, data } from "@/components/user/UserStats";
+import { UserStats } from "@/components/user/UserStats";
 import React, { useEffect, useState } from "react";
 import { getMovieById } from "@/lib/movie/data";
 import { Text } from "@mantine/core";
-import { Movie, UserMovie } from "@/lib/movie/types";
+import type { UserMovie } from "@/lib/movie/types";
 
 export default function UserPage() {
   const avatar =
@@ -18,15 +18,19 @@ export default function UserPage() {
   const [userMoviesData, setUserMoviesData] = useState<UserMovie[]>();
 
   useEffect(() => {
-    async function fetchData() {
-      setUserMoviesData([
-        {
-          ...(await getMovieById("tt0093870")),
-          status: "watched",
-        },
-      ]);
-    }
-    fetchData();
+    getMovieById("tt0093870")
+      .then((movieData) => {
+        setUserMoviesData([
+          {
+            ...movieData,
+            status: "watched",
+          },
+        ]);
+      })
+      .catch((error) => {
+        // Handle any errors that occur during the asynchronous operation
+        console.error("Error fetching movie data:", error);
+      });
   }, []);
   return (
     <div

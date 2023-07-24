@@ -1,7 +1,6 @@
 import {
   Container,
   Text,
-  Button,
   useMantineColorScheme,
   ActionIcon,
   Avatar,
@@ -34,16 +33,18 @@ export default function Navbar() {
         </div>
 
         <Group>
-        <Link href="/profile" style={{ textDecoration: "none" }}>
-          <Text size="sm" weight="bold" color="black">
-          <Avatar radius="xl"></Avatar>
-          </Text>
-        </Link>
+          <Link href="/profile" style={{ textDecoration: "none" }}>
+            <Text size="sm" weight="bold" color="black">
+              <Avatar radius="xl"></Avatar>
+            </Text>
+          </Link>
 
           <ActionIcon
             variant="outline"
             color={dark ? "yellow" : "blue"}
-            onClick={() => toggleColorScheme()}
+            onClick={() => {
+              toggleColorScheme();
+            }}
             title="Toggle color scheme"
             radius="xl"
           >

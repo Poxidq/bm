@@ -1,4 +1,4 @@
-import { Movie } from "@/lib/movie/types";
+import type { Movie } from "@/lib/movie/types";
 
 export const getMovieById = async (movieId: string): Promise<Movie> => {
   const response = await fetch(

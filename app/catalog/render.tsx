@@ -4,7 +4,7 @@ import { Grid } from "@mantine/core";
 
 import React, { useState } from "react";
 
-import { Movie } from "@/lib/movie/types";
+import type { Movie } from "@/lib/movie/types";
 import MovieCard from "@/components/movie/MovieCard";
 import MovieDetailsModal from "@/components/movie/MovieDetailsModal";
 
@@ -22,7 +22,9 @@ export default function MoviesPage({ movies }: MoviesProps) {
       <MovieDetailsModal
         movieData={openedMovie}
         isOpened={areMovieDetailsOpened}
-        onClose={() => setAreMovieDetailsOpened(false)}
+        onClose={() => {
+          setAreMovieDetailsOpened(false);
+        }}
       />
       <Grid gutter="md">
         {movies.map((film, _id) => (

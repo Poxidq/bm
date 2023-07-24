@@ -1,7 +1,7 @@
 import { use } from "react";
 
 import MoviesPage from "./render";
-import { Movie } from "@/lib/movie/types";
+import type { Movie } from "@/lib/movie/types";
 import { getMovieById, getPopularMoviesIds } from "@/lib/movie/data";
 
 export default function FilmsPage() {

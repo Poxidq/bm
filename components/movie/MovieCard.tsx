@@ -4,13 +4,11 @@ import {
   Card,
   Image,
   Text,
-  Badge,
-  Button,
   ActionIcon,
   AspectRatio,
 } from "@mantine/core";
 import { IconPlus } from "@tabler/icons-react";
-import { Movie } from "../../lib/movie/types";
+import type { Movie } from "@/lib/movie/types";
 
 interface MovieCardProps {
   movie: Movie;
@@ -25,7 +23,7 @@ export default function MovieCard({ movie, onClick }: MovieCardProps) {
         padding="sm"
         withBorder
         style={{ display: "flex", flexDirection: "column" }}
-        onClick={ onClick }
+        onClick={onClick}
       >
         <Card.Section>
           <AspectRatio ratio={2 / 3}>
@@ -35,7 +33,9 @@ export default function MovieCard({ movie, onClick }: MovieCardProps) {
         <Text weight={500} mt="sm">
           {movie.title} | {movie.year}
         </Text>
-        <Text size="xs" opacity={0.6}>{movie.genre}</Text>
+        <Text size="xs" opacity={0.6}>
+          {movie.genre}
+        </Text>
         <ActionIcon
           style={{ position: "absolute", right: 10 }}
           variant="filled"

@@ -7,13 +7,10 @@ import {
   Image,
   Title,
   Text,
-  RingProgress,
   Badge,
   Tooltip,
 } from "@mantine/core";
-import MovieCard from "@/components/movie/MovieCard";
-import { Movie } from "@/lib/movie/types";
-import React, { useState, use } from "react";
+import type { Movie } from "@/lib/movie/types";
 
 interface MoviePageProps {
   movie: Movie;

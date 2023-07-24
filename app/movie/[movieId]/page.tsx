@@ -1,7 +1,7 @@
 import { use } from "react";
 
 import MoviePageRender from "./render";
-import { Movie } from "@/lib/movie/types";
+import type { Movie } from "@/lib/movie/types";
 import { getMovieById } from "@/lib/movie/data";
 
 interface MoviePageProps {
