@@ -1,6 +1,4 @@
 "use client";
-
-import Link from "next/link";
 import { UserMovie } from "@/lib/movie/types";
 import {
   createStyles,
@@ -12,6 +10,7 @@ import {
   ScrollArea,
   rem,
 } from "@mantine/core";
+import { useRouter } from "next/navigation";
 
 const useStyles = createStyles((theme) => ({
   progressBar: {
@@ -24,30 +23,35 @@ const useStyles = createStyles((theme) => ({
 }));
 
 export function UserMoviesTable({ data }: { data: UserMovie[] | undefined }) {
+  const { push } = useRouter();
   const { classes, theme } = useStyles();
-  const rows = data?.map((row, _id) => {
+  const rows = data?.map((row) => {
     return (
-      <Link key={_id} href={`/movie/${row.id}`}>
-        <tr key={row.title}>
-          <td>{row.title}</td>
-          <td>{row.released}</td>
-          <td>{row.genre}</td>
-          <td>{row.rating + "/10"}</td>
-          <td></td>
-        </tr>
-      </Link>
+      <tr key={row.title} onClick={() => push(`/movie/${row.id}`)}>
+        <td>{row.title}</td>
+        <td>{row.released}</td>
+        <td>{row.genre}</td>
+        <td>{row.rating + "/10"}</td>
+        <td></td>
+      </tr>
     );
   });
 
   return (
     <ScrollArea>
-      <Table sx={{ minWidth: 800 }} verticalSpacing="xs">
+      <Table
+        sx={{ minWidth: 800, cursor: "pointer" }}
+        verticalSpacing="xs"
+        highlightOnHover
+        
+      >
         <thead>
           <tr>
             <th>Title</th>
             <th>Released</th>
             <th>Genre</th>
             <th>Rating</th>
+            <th>Rate</th>
           </tr>
         </thead>
         <tbody>{rows}</tbody>
