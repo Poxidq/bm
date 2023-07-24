@@ -6,28 +6,35 @@ import { UserStats } from "@/components/user/UserStats";
 import React, { useEffect, useState } from "react";
 import { getMovieById } from "@/lib/movie/data";
 import { Text } from "@mantine/core";
-import { UserMovie } from "@/lib/movie/types";
+import { Movie } from "@/lib/movie/types";
+import { useContextProvider } from "@/context/MovieContext";
 
 export default function UserPage() {
+  // Temp avatar data
   const avatar =
     "https://i.pinimg.com/474x/cf/f1/b0/cff1b00211b10b5e9820ef6494b28da3.jpg";
   const name = "Mason Ayers";
   const gender = "Male";
   const age = 21;
 
-  const [userMoviesData, setUserMoviesData] = useState<UserMovie[]>();
+  const [userMoviesData, setUserMoviesData] = useState<Movie[]>([]);
+  //@ts-ignore
+  const { movies } = useContextProvider();
 
   useEffect(() => {
     async function fetchData() {
-      setUserMoviesData([
-        {
-          ...(await getMovieById("tt0093870")),
-          status: "watched",
-        },
-      ]);
+      for (let i = 0; i < movies.length; i++) {
+        setUserMoviesData([
+          ...userMoviesData,
+          {
+            ...(await getMovieById(movies[i].id)),
+          },
+        ]);
+      }
     }
     fetchData();
   }, []);
+
   return (
     <div
       style={{ display: "flex", flexDirection: "column", alignItems: "center" }}

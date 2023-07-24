@@ -1,5 +1,5 @@
 "use client";
-import { UserMovie } from "@/lib/movie/types";
+import { UserMovie, Movie } from "@/lib/movie/types";
 import {
   createStyles,
   Table,
@@ -22,7 +22,7 @@ const useStyles = createStyles((theme) => ({
   },
 }));
 
-export function UserMoviesTable({ data }: { data: UserMovie[] | undefined }) {
+export function UserMoviesTable({ data }: { data: Movie[] | undefined }) {
   const { push } = useRouter();
   const { classes, theme } = useStyles();
   const rows = data?.map((row) => {
@@ -43,7 +43,6 @@ export function UserMoviesTable({ data }: { data: UserMovie[] | undefined }) {
         sx={{ minWidth: 800, cursor: "pointer" }}
         verticalSpacing="xs"
         highlightOnHover
-        
       >
         <thead>
           <tr>
@@ -51,7 +50,6 @@ export function UserMoviesTable({ data }: { data: UserMovie[] | undefined }) {
             <th>Released</th>
             <th>Genre</th>
             <th>Rating</th>
-            <th>Rate</th>
           </tr>
         </thead>
         <tbody>{rows}</tbody>
