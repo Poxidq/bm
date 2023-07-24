@@ -22,7 +22,6 @@ export interface Movie extends MovieShort {
   directors: string[];
   writers: string[];
   actors: string[];
-  review?: string;
 }
 
 export interface MovieSearchResult {
