@@ -10,7 +10,7 @@ import {
   ScrollArea,
   rem,
 } from "@mantine/core";
->>>>>>> 0741462 (profile fetchind/types issues, added the link to details page for every movie)
+import { useRouter } from "next/navigation";
 
 const useStyles = createStyles((theme) => ({
   progressBar: {
@@ -39,20 +39,6 @@ export function UserMoviesTable({ data }: { data: Movie[] | undefined }) {
         <td>{row.rating + "/10"}</td>
         <td></td>
       </tr>
-=======
-  const { classes, theme } = useStyles();
-  const rows = data?.map((row, _id) => {
-    return (
-      <Link key={_id} href={`/movie/${row.id}`}>
-        <tr key={row.title}>
-          <td>{row.title}</td>
-          <td>{row.released}</td>
-          <td>{row.genre}</td>
-          <td>{row.rating + "/10"}</td>
-          <td></td>
-        </tr>
-      </Link>
->>>>>>> 0741462 (profile fetchind/types issues, added the link to details page for every movie)
     );
   });
 
