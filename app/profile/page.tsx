@@ -23,17 +23,14 @@ export default function UserPage() {
   console.log(movies);
   useEffect(() => {
     async function fetchData() {
+      const userMovies = [];
       for (let i = 0; i < movies.length; i++) {
-        setUserMoviesData([
-          ...userMoviesData,
-          {
-            ...(await getMovieById(movies[i].id)),
-          },
-        ]);
+        userMovies.push(await getMovieById(movies[i].id));
       }
+      return userMovies;
     }
-    void fetchData();
-  }, []);
+    fetchData().then((data) => setUserMoviesData(data));
+  }, [movies]);
 
   return (
     <div

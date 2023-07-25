@@ -36,7 +36,7 @@ export default function MovieDetailsModal({
   const [review, setReview] = useState("");
 
   if (movieData === undefined) {
-    return <>Note Found</>;
+    return <></>;
   }
 
   const handleAddNewMovie = () => {

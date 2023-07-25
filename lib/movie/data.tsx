@@ -4,7 +4,7 @@ const API_BASE_URL = "https://www.omdbapi.com";
 
 export const getMovieById = async (movieId: string): Promise<Movie> => {
   const response = await fetch(
-    `${API_BASE_URL}/?i=${movieId}&plot=full&apikey=${process.env.NEXT_PUBLIC_API_KEY}`
+    `${API_BASE_URL}/?i=${movieId}&apikey=${process.env.NEXT_PUBLIC_API_KEY}`
   );
   const movieData: APIMovieData = await response.json();
   return {
