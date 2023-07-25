@@ -3,12 +3,16 @@ export interface Rating {
   value: string;
 }
 
-export interface Movie {
+export interface MovieShort {
   id: string;
   title: string;
-  imageUrl: string;
-  rating: string;
   year: string;
+  imageUrl: string;
+  type: string;
+}
+
+export interface Movie extends MovieShort {
+  rating: string;
   genre: string;
   released: string;
   country: string;
@@ -18,9 +22,16 @@ export interface Movie {
   directors: string[];
   writers: string[];
   actors: string[];
-  review?: string;
 }
 
-export interface UserMovie extends Movie {
+export interface MovieSearchResult {
+  movies: MovieShort[];
+  totalPages: number;
+}
+
+export interface UserMovie {
   status: "in the plans" | "watched" | "watching" | "abandoned";
+  userRating: number;
+  id: string;
+  review?: string;
 }

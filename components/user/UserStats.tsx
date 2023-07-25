@@ -1,5 +1,6 @@
 "use client";
 
+import { type Movie } from "@/lib/movie/types";
 import React from "react";
 import {
   Radar,
@@ -9,34 +10,25 @@ import {
   PolarRadiusAxis,
 } from "recharts";
 
-export const data = [
-  {
-    genre: "Action",
-    watched: 20,
-  },
-  {
-    genre: "Comedy",
-    watched: 12,
-  },
-  {
-    genre: "Horror",
-    watched: 15,
-  },
-  {
-    genre: "Cartoon",
-    watched: 10,
-  },
-  {
-    genre: "Fantasy",
-    watched: 28,
-  },
-  {
-    genre: "Other",
-    watched: 50,
-  },
-];
+export function UserStats({ data }: { data: Movie[] | undefined }) {
+  // Create an object to store the count of each genre
+  const genreCount: Record<string, number> = {};
 
-export function UserStats() {
+  // Loop through the data and count the genres
+  if (data != null) {
+    data.forEach((movie) => {
+      movie.genre.split(", ").forEach((genre) => {
+        genreCount[genre] = (genreCount[genre] || 0) + 1;
+      });
+    });
+  }
+
+  // Convert the genreCount object to an array of objects with the desired format
+  const chartData = Object.entries(genreCount).map(([genre, watched]) => ({
+    genre,
+    watched,
+  }));
+
   return (
     <RadarChart
       cx={300}
@@ -44,7 +36,7 @@ export function UserStats() {
       outerRadius={150}
       width={500}
       height={500}
-      data={data}
+      data={chartData}
     >
       <PolarGrid />
       <PolarAngleAxis dataKey="genre" />

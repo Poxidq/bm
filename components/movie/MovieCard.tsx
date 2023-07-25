@@ -1,15 +1,15 @@
 "use client";
 
-import { Card, Image, Text, ActionIcon, AspectRatio } from "@mantine/core";
+import { Card, Image, Text, Badge, AspectRatio } from "@mantine/core";
 import { IconPlus } from "@tabler/icons-react";
-import type { Movie } from "@/lib/movie/types";
+import { type MovieShort } from "@lib/movie/types";
 
 interface MovieCardProps {
-  movie: Movie;
-  onClick: () => void;
+  movie: MovieShort;
+  onClickHandle: (id: string) => void;
 }
 
-export default function MovieCard({ movie, onClick }: MovieCardProps) {
+export default function MovieCard({ movie, onClickHandle }: MovieCardProps) {
   return (
     <>
       <Card
@@ -17,25 +17,35 @@ export default function MovieCard({ movie, onClick }: MovieCardProps) {
         padding="sm"
         withBorder
         style={{ display: "flex", flexDirection: "column" }}
-        onClick={onClick}
+        onClick={() => {
+          onClickHandle(movie.id);
+        }}
       >
         <Card.Section>
-          <AspectRatio ratio={2 / 3}>
+          <AspectRatio ratio={21 / 30}>
             <Image src={movie.imageUrl} alt={movie.title} fit="cover" />
           </AspectRatio>
         </Card.Section>
-        <Text weight={500} mt="sm">
-          {movie.title} | {movie.year}
+        <Text
+          opacity={0.8}
+          weight={"bold"}
+          mt="sm"
+          size={"md"}
+          style={{ height: 50 }}
+          lineClamp={2}
+        >
+          {movie.title}
         </Text>
-        <Text size="xs" opacity={0.6}>
-          {movie.genre}
-        </Text>
-        <ActionIcon
+        {/* <ActionIcon
           style={{ position: "absolute", right: 10 }}
           variant="filled"
+          color="blue"
         >
           <IconPlus />
-        </ActionIcon>
+        </ActionIcon> */}
+        <Badge style={{ position: "absolute", left: 10 }} variant="light">
+          {movie.year}
+        </Badge>
       </Card>
     </>
   );

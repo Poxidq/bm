@@ -28,9 +28,6 @@ export default function Navbar() {
             bM
           </Text>
         </Link>
-        <div style={{ display: "flex", gap: "10px" }}>
-          <NavbarLink href="/catalog">Catalog</NavbarLink>
-        </div>
 
         <Group>
           <Link href="/profile" style={{ textDecoration: "none" }}>

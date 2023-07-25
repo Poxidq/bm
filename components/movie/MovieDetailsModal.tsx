@@ -10,10 +10,13 @@ import {
   Modal,
 } from "@mantine/core";
 import { IconPlus, IconStar } from "@tabler/icons-react";
-import type { Movie } from "@lib/movie/types";
+import { type Movie, type UserMovie } from "@lib/movie/types";
+import { useContextProvider } from "@/context/MovieContext";
+import { useState } from "react";
+import { useRouter } from "next/navigation";
 
 interface MovieDetailsModalProps {
-  movieData: Movie | null;
+  movieData: Movie | undefined;
   isOpened: boolean;
   onClose: () => void;
 }
@@ -23,9 +26,30 @@ export default function MovieDetailsModal({
   isOpened,
   onClose,
 }: MovieDetailsModalProps) {
-  if (movieData === null) {
-    return <></>;
+  const { push } = useRouter();
+  // @ts-expect-error
+  const { addNewMovie } = useContextProvider();
+  const [status, setStatus] = useState<
+    "in the plans" | "watched" | "watching" | "abandoned"
+  >("in the plans");
+  const [userRating, setUserRating] = useState(0);
+  const [review, setReview] = useState("");
+
+  if (movieData === undefined) {
+    return <>Note Found</>;
   }
+
+  const handleAddNewMovie = () => {
+    const newMovie: UserMovie = {
+      id: movieData.id,
+      status,
+      userRating,
+      review,
+    };
+    addNewMovie(newMovie);
+    // console.log("ADDED new movie to local storage!");
+  };
+
   return (
     <Modal size={"xl"} opened={isOpened} onClose={onClose} title="About movie">
       <Grid gutter="lg">
@@ -55,14 +79,19 @@ export default function MovieDetailsModal({
             <Text size="md">{movieData.rating}/10</Text>
           </Group>
 
-          <Button mt={10} leftIcon={<IconPlus />}>
-            Watchlist
-          </Button>
-
           <Text size="lg" mt={10} weight={"bold"}>
             Overview
           </Text>
           <Text size="md">{movieData.plot}</Text>
+          <Button
+            mt={10}
+            leftIcon={<IconPlus />}
+            onClick={() => {
+              push(`/movie/${movieData.id}`);
+            }}
+          >
+            Add to list
+          </Button>
         </Grid.Col>
       </Grid>
     </Modal>

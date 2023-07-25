@@ -1,5 +1,5 @@
 "use client";
-import type { UserMovie } from "@/lib/movie/types";
+import { type Movie } from "@/lib/movie/types";
 import { createStyles, Table, ScrollArea, rem } from "@mantine/core";
 import { useRouter } from "next/navigation";
 
@@ -13,7 +13,7 @@ const useStyles = createStyles((theme) => ({
   },
 }));
 
-export function UserMoviesTable({ data }: { data: UserMovie[] | undefined }) {
+export function UserMoviesTable({ data }: { data: Movie[] | undefined }) {
   const { push } = useRouter();
   useStyles();
   const rows = data?.map((row) => {
@@ -36,7 +36,7 @@ export function UserMoviesTable({ data }: { data: UserMovie[] | undefined }) {
   return (
     <ScrollArea>
       <Table
-        sx={{ minWidth: 800, cursor: "pointer" }}
+        sx={{ minWidth: 800, cursor: "pointer", marginBottom: "4rem" }}
         verticalSpacing="xs"
         highlightOnHover
       >
@@ -46,7 +46,6 @@ export function UserMoviesTable({ data }: { data: UserMovie[] | undefined }) {
             <th>Released</th>
             <th>Genre</th>
             <th>Rating</th>
-            <th>Rate</th>
           </tr>
         </thead>
         <tbody>{rows}</tbody>
