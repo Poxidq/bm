@@ -9,13 +9,70 @@ import {
   Text,
   Badge,
   Tooltip,
+  Select,
+  Box,
+  Rating,
+  Textarea,
+  Button,
 } from "@mantine/core";
 import type { Movie } from "@/lib/movie/types";
+import { useState } from "react";
+import { useForm } from "@mantine/form";
+import { useContextProvider } from "@/context/MovieContext";
+
+interface MovieStatus {
+  label: string;
+  value: string;
+  isReviewAvailable: boolean;
+}
 
 interface MoviePageProps {
   movie: Movie;
 }
 export default function MoviePage({ movie }: MoviePageProps) {
+  const movieStatuses: MovieStatus[] = [
+    { label: "Planned", value: "planned", isReviewAvailable: false },
+    { label: "Watching", value: "watching", isReviewAvailable: false },
+    { label: "Watched", value: "watched", isReviewAvailable: true },
+    { label: "Abandoned", value: "abandoned", isReviewAvailable: false },
+  ];
+
+  const [value, setValue] = useState<string>(movieStatuses[0].value);
+  const [reviewAvailable, setReviewAvailable] = useState<boolean>(
+    movieStatuses[0].isReviewAvailable
+  );
+
+  const onChange = (value: string) => {
+    const movieStatus = movieStatuses.find((status) => status.value === value);
+    if (!movieStatus) return;
+
+    setValue(value);
+    setReviewAvailable(movieStatus.isReviewAvailable);
+  };
+  // @ts-expect-error
+  const { addNewMovie, findMovieById } = useContextProvider();
+
+  const userMovie = findMovieById(movie.id);
+
+  const form = useForm({
+    initialValues: {
+      status: userMovie ? userMovie.status : "",
+      review: userMovie ? userMovie.review : "",
+      rating: userMovie ? userMovie.userRating : "",
+    },
+  });
+
+  const onSubmit = (values: any) => {
+    console.log(values);
+
+    addNewMovie({
+      id: movie.id,
+      status: values.status,
+      review: values.review,
+      userRating: values.rating,
+    });
+  };
+
   return (
     <div>
       <Grid gutter="lg">
@@ -73,6 +130,43 @@ export default function MoviePage({ movie }: MoviePageProps) {
           </Grid>
         </Grid.Col>
       </Grid>
+
+      <form onSubmit={form.onSubmit(onSubmit)}>
+        <Grid mt={20}>
+          <Grid.Col xs={3}>
+            <Select
+              {...form.getInputProps("status")}
+              data={movieStatuses.map((status) => ({
+                value: status.value,
+                label: status.label,
+              }))}
+              value={value}
+              onChange={onChange}
+            />
+            <div
+              style={{
+                display: "flex",
+                justifyContent: "space-between",
+              }}
+            >
+              {reviewAvailable && (
+                <Rating {...form.getInputProps("rating")} size="lg" mt={10} />
+              )}
+              <Button type="submit" variant="light" mt={10}>
+                Save
+              </Button>
+            </div>
+          </Grid.Col>
+          <Grid.Col xs={9}>
+            {reviewAvailable && (
+              <Textarea
+                {...form.getInputProps("review")}
+                placeholder="Your review"
+              />
+            )}
+          </Grid.Col>
+        </Grid>
+      </form>
     </div>
   );
 }

@@ -30,8 +30,8 @@ export default function MovieDetailsModal({
   // @ts-expect-error
   const { addNewMovie } = useContextProvider();
   const [status, setStatus] = useState<
-    "in the plans" | "watched" | "watching" | "abandoned"
-  >("in the plans");
+    "planned" | "watched" | "watching" | "abandoned"
+  >("planned");
   const [userRating, setUserRating] = useState(0);
   const [review, setReview] = useState("");
 

@@ -30,7 +30,7 @@ export interface MovieSearchResult {
 }
 
 export interface UserMovie {
-  status: "in the plans" | "watched" | "watching" | "abandoned";
+  status: "planned" | "watching" | "watched" | "abandoned";
   userRating: number;
   id: string;
   review?: string;

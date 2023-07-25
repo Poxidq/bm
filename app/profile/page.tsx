@@ -20,7 +20,7 @@ export default function UserPage() {
   const [userMoviesData, setUserMoviesData] = useState<Movie[]>([]);
   // @ts-expect-error
   const { movies } = useContextProvider();
-
+  console.log(movies);
   useEffect(() => {
     async function fetchData() {
       for (let i = 0; i < movies.length; i++) {
@@ -33,7 +33,6 @@ export default function UserPage() {
       }
     }
     void fetchData();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return (
