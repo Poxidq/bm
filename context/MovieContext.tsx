@@ -27,13 +27,20 @@ export const TasksContextProvider = ({ children }: any) => {
     return movies.find((movie) => movie.id === id);
   };
 
-  const addNewMovie = (movie: UserMovie): void => {
+  const setMovie = (movie: UserMovie): void => {
+    for (let i = 0; i < movies.length; i++) {
+      if (movies[i].id === movie.id) {
+        movies[i] = movie;
+        setMovies([...movies]);
+        return;
+      }
+    }
     setMovies([...movies, movie]);
   };
 
   return (
     <ContextProvider.Provider
-      value={{ movies, setMovies, findMovieById, addNewMovie }}
+      value={{ movies, setMovies, findMovieById, setMovie }}
     >
       {children}
     </ContextProvider.Provider>

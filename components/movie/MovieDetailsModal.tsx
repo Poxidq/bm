@@ -8,6 +8,8 @@ import {
   Group,
   Grid,
   Modal,
+  Tooltip,
+  Badge,
 } from "@mantine/core";
 import { IconPlus, IconStar } from "@tabler/icons-react";
 import { type Movie, type UserMovie } from "@lib/movie/types";
@@ -51,7 +53,12 @@ export default function MovieDetailsModal({
   };
 
   return (
-    <Modal size={"xl"} opened={isOpened} onClose={onClose} title="About movie">
+    <Modal
+      size={"xl"}
+      opened={isOpened}
+      onClose={onClose}
+      title={<Text>About movie</Text>}
+    >
       <Grid gutter="lg">
         <Grid.Col xs={4}>
           <AspectRatio ratio={2 / 3} mx="auto">
@@ -74,9 +81,12 @@ export default function MovieDetailsModal({
             </Text>
           </Group>
 
-          <Group>
-            <IconStar fill="#eb8d09" stroke="none" color="none" />
-            <Text size="md">{movieData.rating}/10</Text>
+          <Group mt={5} mb={10}>
+            {movieData.ratings.map((rating, _id) => (
+              <Tooltip key={_id} label={rating.source}>
+                <Badge size="lg">{rating.value}</Badge>
+              </Tooltip>
+            ))}
           </Group>
 
           <Text size="lg" mt={10} weight={"bold"}>

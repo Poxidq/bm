@@ -16,7 +16,7 @@ import {
   Button,
 } from "@mantine/core";
 import type { Movie } from "@/lib/movie/types";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useForm } from "@mantine/form";
 import { useContextProvider } from "@/context/MovieContext";
 
@@ -41,18 +41,26 @@ export default function MoviePage({ movie }: MoviePageProps) {
   const [reviewAvailable, setReviewAvailable] = useState<boolean>(
     movieStatuses[0].isReviewAvailable
   );
+  const [isSaved, setIsSaved] = useState<boolean>(false);
 
   const onChange = (value: string) => {
-    const movieStatus = movieStatuses.find((status) => status.value === value);
-    if (!movieStatus) return;
+    // const movieStatus = movieStatuses.find((status) => status.value === value);
+    // if (!movieStatus) return;
 
     setValue(value);
-    setReviewAvailable(movieStatus.isReviewAvailable);
+    // setReviewAvailable(movieStatus.isReviewAvailable);
   };
-  // @ts-expect-error
-  const { addNewMovie, findMovieById } = useContextProvider();
 
-  const userMovie = findMovieById(movie.id);
+  useEffect(() => {
+    const movieStatus = movieStatuses.find((status) => status.value === value);
+    if (!movieStatus) return;
+    setReviewAvailable(movieStatus.isReviewAvailable);
+  }, [value]);
+
+  // @ts-expect-error
+  const { setMovie, findMovieById, movies } = useContextProvider();
+
+  const [userMovie, setUserMovie] = useState(findMovieById(movie.id));
 
   const form = useForm({
     initialValues: {
@@ -62,15 +70,26 @@ export default function MoviePage({ movie }: MoviePageProps) {
     },
   });
 
-  const onSubmit = (values: any) => {
-    console.log(values);
+  useEffect(() => {
+    const userMovie = findMovieById(movie.id);
+    setUserMovie(findMovieById(movie.id));
+    if (!userMovie) return;
+    setValue(userMovie.status);
+    form.setValues({
+      status: userMovie.status,
+      review: userMovie.review,
+      rating: userMovie.userRating,
+    });
+  }, [movies]);
 
-    addNewMovie({
+  const onSubmit = (values: any) => {
+    setMovie({
       id: movie.id,
-      status: values.status,
+      status: value,
       review: values.review,
       userRating: values.rating,
     });
+    setIsSaved(true);
   };
 
   return (
@@ -152,8 +171,8 @@ export default function MoviePage({ movie }: MoviePageProps) {
               {reviewAvailable && (
                 <Rating {...form.getInputProps("rating")} size="lg" mt={10} />
               )}
-              <Button type="submit" variant="light" mt={10}>
-                Save
+              <Button type="submit" variant="light" mt={10} disabled={isSaved}>
+                {isSaved ? "Saved" : "Save" }
               </Button>
             </div>
           </Grid.Col>
