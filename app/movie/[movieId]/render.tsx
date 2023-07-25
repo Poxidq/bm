@@ -55,6 +55,7 @@ export default function MoviePage({ movie }: MoviePageProps) {
     const movieStatus = movieStatuses.find((status) => status.value === value);
     if (!movieStatus) return;
     setReviewAvailable(movieStatus.isReviewAvailable);
+    // eslint-disable-next-line
   }, [value]);
 
   // @ts-expect-error
@@ -80,6 +81,7 @@ export default function MoviePage({ movie }: MoviePageProps) {
       review: userMovie.review,
       rating: userMovie.userRating,
     });
+    // eslint-disable-next-line
   }, [movies]);
 
   const onSubmit = (values: any) => {
@@ -172,7 +174,7 @@ export default function MoviePage({ movie }: MoviePageProps) {
                 <Rating {...form.getInputProps("rating")} size="lg" mt={10} />
               )}
               <Button type="submit" variant="light" mt={10} disabled={isSaved}>
-                {isSaved ? "Saved" : "Save" }
+                {isSaved ? "Saved" : "Save"}
               </Button>
             </div>
           </Grid.Col>
