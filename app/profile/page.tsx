@@ -49,7 +49,7 @@ export default function UserPage() {
         <div style={{ marginRight: "20px" }}>
           <UserCard avatar={avatar} name={name} gender={gender} age={age} />
         </div>
-        <UserStats />
+        <UserStats data={userMoviesData} />
       </div>
       <Text size="xl" weight="bold" mb={10}>
         Your movies

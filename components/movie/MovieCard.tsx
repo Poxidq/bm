@@ -6,10 +6,10 @@ import { type MovieShort } from "@lib/movie/types";
 
 interface MovieCardProps {
   movie: MovieShort;
-  onClick: (id: string) => void;
+  onClickHandle: (id: string) => void;
 }
 
-export default function MovieCard({ movie, onClick }: MovieCardProps) {
+export default function MovieCard({ movie, onClickHandle }: MovieCardProps) {
   return (
     <>
       <Card
@@ -18,7 +18,7 @@ export default function MovieCard({ movie, onClick }: MovieCardProps) {
         withBorder
         style={{ display: "flex", flexDirection: "column" }}
         onClick={() => {
-          onClick(movie.id);
+          onClickHandle(movie.id);
         }}
       >
         <Card.Section>

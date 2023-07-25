@@ -36,8 +36,9 @@ export default function SearchPageRender() {
   }, [search, currentPage]);
 
   const handleAddMovie = async (id: string) => {
-    setActiveMovie(await getMovieById(id));
+    console.log("HERE IS MY ID: ", id);
     setIsModalOpen(true);
+    setActiveMovie(await getMovieById(id));
   };
 
   return (
@@ -48,7 +49,7 @@ export default function SearchPageRender() {
           <Grid gutter="md" mt={10}>
             {movies.map((movie, _id) => (
               <Grid.Col xs={2.4} key={_id}>
-                <MovieCard movie={movie} onClick={() => handleAddMovie} />
+                <MovieCard movie={movie} onClickHandle={handleAddMovie} />
               </Grid.Col>
             ))}
           </Grid>
