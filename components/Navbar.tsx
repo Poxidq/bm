@@ -35,22 +35,6 @@ export default function Navbar() {
               Go to Profile
             </Button>
           </Link>
-
-          <ActionIcon
-            variant="outline"
-            color={dark ? "yellow" : "blue"}
-            onClick={() => {
-              toggleColorScheme();
-            }}
-            title="Toggle color scheme"
-            radius="xl"
-          >
-            {dark ? (
-              <IconSun style={{ width: 18, height: 18 }} />
-            ) : (
-              <IconMoon style={{ width: 18, height: 18 }} />
-            )}
-          </ActionIcon>
         </Group>
       </nav>
     </Container>
