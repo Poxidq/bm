@@ -36,14 +36,12 @@ export function UserMoviesTable({ data }: { data: Movie[] | undefined }) {
   return (
     <ScrollArea>
       <Table
-        sx={{ minWidth: 800, cursor: "pointer" }}
+        sx={{ minWidth: 800, cursor: "pointer", marginBottom: "4rem" }}
         verticalSpacing="xs"
         highlightOnHover
       >
         <thead>
           <tr>
-            <th>Title</th>
-            <th>Released</th>
             <th>Title</th>
             <th>Released</th>
             <th>Genre</th>
