@@ -4,7 +4,7 @@ const API_BASE_URL = "https://www.omdbapi.com";
 
 export const getMovieById = async (movieId: string): Promise<Movie> => {
   const response = await fetch(
-    `${API_BASE_URL}/?i=${movieId}&apikey=${process.env.NEXT_PUBLIC_API_KEY}`
+    `${API_BASE_URL}/?i=${movieId}&plot=full&apikey=${process.env.NEXT_PUBLIC_API_KEY}`
   );
   const movieData: APIMovieData = await response.json();
   return {
@@ -31,13 +31,7 @@ export const getMovieById = async (movieId: string): Promise<Movie> => {
   };
 };
 
-export const searchMovies = async ({
-  search,
-  page,
-}: {
-  search: string;
-  page: number;
-}): Promise<MovieSearchResult> => {
+export const searchMovies = async ({search, page}: {search: string, page: number}): Promise<MovieSearchResult> => {
   const response = await fetch(
     `${API_BASE_URL}/?s=${search}&page=${page}&apikey=${process.env.NEXT_PUBLIC_API_KEY}`
   );
@@ -52,7 +46,7 @@ export const searchMovies = async ({
     })),
     totalPages: Math.ceil(parseInt(movieData.totalResults) / 10),
   };
-};
+}
 
 export const getPopularMoviesIds = async (): Promise<string[]> => {
   const moviesList = ["tt0093870"];
@@ -72,6 +66,7 @@ interface APIMovieSearchResultData {
   imdbID: string;
   Type: string;
 }
+
 
 interface APIMovieData {
   Title: string;

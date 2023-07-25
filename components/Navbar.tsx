@@ -3,11 +3,11 @@ import {
   Text,
   useMantineColorScheme,
   ActionIcon,
-  Avatar,
   Group,
+  Button,
 } from "@mantine/core";
 import Link from "next/link";
-import { IconSun, IconMoon } from "@tabler/icons-react";
+import { IconSun, IconMoon, IconUser } from "@tabler/icons-react";
 
 export default function Navbar() {
   const { colorScheme, toggleColorScheme } = useMantineColorScheme();
@@ -24,16 +24,16 @@ export default function Navbar() {
         }}
       >
         <Link href="/" style={{ textDecoration: "none" }}>
-          <Text component="span" size="xl" weight="bold" color="black">
+          <Text component="span" size="xl" weight="bold" color="blue">
             bM
           </Text>
         </Link>
 
         <Group>
           <Link href="/profile" style={{ textDecoration: "none" }}>
-            <Text size="sm" weight="bold" color="black">
-              <Avatar radius="xl"></Avatar>
-            </Text>
+            <Button rightIcon={<IconUser />} variant="subtle">
+              Go to Profile
+            </Button>
           </Link>
 
           <ActionIcon
@@ -54,21 +54,5 @@ export default function Navbar() {
         </Group>
       </nav>
     </Container>
-  );
-}
-
-function NavbarLink({
-  href,
-  children,
-}: {
-  href: string;
-  children: React.ReactNode;
-}) {
-  return (
-    <Link href={href} style={{ textDecoration: "none" }}>
-      <Text size="sm" weight="bold" color="black">
-        {children}
-      </Text>
-    </Link>
   );
 }
